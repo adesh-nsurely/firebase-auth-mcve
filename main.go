@@ -36,6 +36,7 @@ func main() {
 		return
 	}
 
+	// Create the users parallely.
 	var wg sync.WaitGroup
 	for i := 0; i < numUsers; i++ {
 		wg.Add(1)
@@ -44,12 +45,18 @@ func main() {
 			// Generate a random email ID.
 			randomEmail := fmt.Sprintf("%s@nsurely.com", generateRandomString(15))
 
-			// Create a new user.
+			// Set the params for creating the user.
 			params := (&firebaseAuth.UserToCreate{}).Email(randomEmail)
+
+			// Create the new user.
 			u, err := client.CreateUser(context.Background(), params)
 			if err != nil {
 				fmt.Printf("error creating user: %v\n", err)
 			} else {
+
+				// User creation successful.
+
+				// Set the time when the user was created.
 				time := time.Now().Format("2006-01-02 15:04:05")
 
 				// Convert the default claims to JSON for printing.
@@ -60,7 +67,7 @@ func main() {
 				fmt.Printf("%v: Successfully created user %v and default claims %s\n", time, u.Email, claims)
 			}
 
-			// set custom claims
+			// set custom claims on the user
 			claims := map[string]interface{}{
 				"orgGroup": generateRandomString(20),
 				"orgs":     []string{generateRandomString(20), generateRandomString(20)},

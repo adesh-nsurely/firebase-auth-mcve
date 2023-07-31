@@ -1,6 +1,6 @@
 # firebase-auth-mcve
 
-This is a Minimal, Reproducible Example that is created to reproduce an issue we are facing with firebase auth, where the custom claims set on a user are not reflecting.
+This is a Minimal, Reproducible Example that is created to reproduce an issue we are facing with firebase auth, where the custom claims set on a user are not reflecting when we fetch the user after creating.
 The code creates x number of users in firebase simultaneously and sets custom claims on those users.
 The code then waits for a few seconds and then fetches the user again to see if the custom claims have been set or not.
 
@@ -8,7 +8,7 @@ Upon testing multiple times, following things have been observed:
 
 - When multiple users are created simultaneously and custom claims are set on these users, the claims are not reflected on some users
 - When a single user is created at a time, the issue does not seem to occur
-- This issue does not seem to be occurring with all firebase accounts. We have 2 firebase accounts, onc created 2 years back and one created recently. The issue only occurs on the newly created firebase account
+- This issue does not seem to be occurring with all firebase accounts. We have 2 firebase accounts, onc created 2 years back and one created recently (2-3 months old). The issue only occurs on the newly created firebase account
 
 ## Setup
 
@@ -31,8 +31,13 @@ You can get the credentials from here this link https://console.firebase.google.
 
 ## Output from testing
 
+We tested the same code on two different firebase projects multiple times and noticed that the issue occurs only on one project. All the settings on both the projects are the same.
+Sample output from both the projects is added below.
+The first part of the output shows status of the newly created users in firebase. The second part of the output shows the custom claims set on those users.
+
 #### Firebase project 1
-The custom claims are set correctly when running the code on this firebase project
+The custom claims are set correctly when running the code on the first firebase project.
+
 ```
 ➜  firebase-auth-mcve git:(main) ✗ go run main.go
 2023-07-31 13:37:23: Successfully created user azkxgykzz3uib2u@nsurely.com and default claims null
@@ -138,7 +143,7 @@ The custom claims are set correctly when running the code on this firebase proje
 ```
 
 #### Firebase project 2
-The custom claims are not always set correctly when running on the second project. This firebase project was setup few months back
+The custom claims are not always set correctly when running on the second project. Note that the when setting the custom claims no error is thrown.
 
 ```
 ➜  firebase-auth-mcve git:(main) ✗ go run main.go
