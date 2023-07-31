@@ -36,7 +36,7 @@ func main() {
 		return
 	}
 
-	// Create the users parallely.
+	// Create the users parallelly.
 	var wg sync.WaitGroup
 	for i := 0; i < numUsers; i++ {
 		wg.Add(1)
