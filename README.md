@@ -1,14 +1,14 @@
 # firebase-auth-mcve
 
-This is a Minimal, Reproducible Example that is created to reproduce a issue we are facing with firebase auth, where the custom claims set on a user are not reflecting.
+This is a Minimal, Reproducible Example that is created to reproduce an issue we are facing with firebase auth, where the custom claims set on a user are not reflecting.
 The code creates x number of users in firebase simultaneously and sets custom claims on those users.
 The code then waits for a few seconds and then fetches the user again to see if the custom claims have been set or not.
 
-Upon testing multiple times, following things have been obsereved:
+Upon testing multiple times, following things have been observed:
 
-- When multiple users are created simultaniously and custom claims are set on these users, the claims are not reflected on some users
+- When multiple users are created simultaneously and custom claims are set on these users, the claims are not reflected on some users
 - When a single user is created at a time, the issue does not seem to occur
-- This issue does not seem to be occuring with all firebase accounts. We have 2 firebase accounts, onc created 2 years back and one created recently. The issue only occurs on the newly created firebase account
+- This issue does not seem to be occurring with all firebase accounts. We have 2 firebase accounts, onc created 2 years back and one created recently. The issue only occurs on the newly created firebase account
 
 ## Setup
 
@@ -29,7 +29,7 @@ You can get the credentials from here this link https://console.firebase.google.
 `go run main.go`
 
 
-## Output from testin
+## Output from testing
 
 #### Firebase project 1
 The custom claims are set correctly when running the code on this firebase project
